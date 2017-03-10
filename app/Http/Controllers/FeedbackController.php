@@ -14,7 +14,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        $feedback = Feedback::all();
+        $feedback = Feedback::orderBy('id','DESC')->get()->toArray();
         return view('feedback.index', compact('feedback'));
     }
 

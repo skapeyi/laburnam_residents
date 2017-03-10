@@ -11,10 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+Route::get('/','FeedbackController@residents');
 Route::get('/make-a-booking','BookingController@create' );
 Route::get('/give-feedback','FeedbackController@create');
 Route::get('/residents-information','FeedbackController@residents');

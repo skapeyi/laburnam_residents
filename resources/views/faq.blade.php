@@ -214,9 +214,9 @@
 
 
   </div>
-</div>
-<!-- End Categroy 1 -->
+
+  <!-- End Categroy 1 -->
 
 
 
-@endsection
+  @endsection

@@ -9,13 +9,13 @@
           {!! Form::open(['action' => 'BookingController@store']) !!}
 
           <div class="form-group">
-            {!! Form::label('name','Check-In Date')!!}
+            {!! Form::label('name','Your Name')!!}
             {!! Form::text('name', '', ['class' => 'form-control']) !!}
           </div>
 
           <div class="form-group">
             {!! Form::label('check_in','Check-In Date')!!}
-            {!! Form::date('check_in', '', ['class' => 'form-control', 'id' => 'checkin']) !!}
+            {!! Form::text('check_in', '', ['class' => 'form-control', 'id' => 'checkin']) !!}
           </div>
 
           <div class="form-group">
@@ -76,10 +76,6 @@ $(document).ready(function() {
      });
    });
 });
-
-
-
-
 
 </script>
 @endsection

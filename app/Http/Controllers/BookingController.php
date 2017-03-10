@@ -16,11 +16,13 @@ class BookingController extends Controller
     public function index()
     {
         //View all bookings made
-        $bookings = Booking::all();
+        $bookings = Booking::orderBy('id','DESC')->get()->toArray();
         $total_bookings = DB::table('bookings')->count();
-        $confimed = DB::table('bookings')->where('confirmed',1)->count();
-        $contact = DB::table('bookings')->where('contacted',1)->count();
-        return view('booking.index', compact('bookings'));
+        $not_contacted_not_confirmed = DB::table('bookings')->where(['confirmed'=>0,'contacted' =>0])->count();
+        $contacted_not_confirmed = DB::table('bookings')->where(['confirmed'=>0,'contacted' =>1])->count();
+        $contacted_confirmed = DB::table('bookings')->where(['confirmed'=>1,'contacted' =>1])->count();
+        $contacted = DB::table('bookings')->where('contacted',1)->count();
+        return view('booking.index', compact('bookings','confirmed','not_contacted_not_confirmed','contacted_not_confirmed','contacted_confirmed'));
     }
 
     /**
