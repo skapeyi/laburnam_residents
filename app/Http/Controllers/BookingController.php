@@ -63,6 +63,7 @@ class BookingController extends Controller
         $data = array (
             'bodyMessage' => $messageBody
         );
+
         Mail::send ( 'email', $data, function ($message) {
             $message->from ( 'booking@laburnam.com', 'Just Laravel' );
             $message->to ( 'info@laburnam.com' )->subject ( 'New Booking Notification' );
