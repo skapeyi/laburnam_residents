@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Booking;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
@@ -54,6 +55,19 @@ class BookingController extends Controller
           'phone' => $request->phone,
           'more_info' => $request->more_info
         ]);
+
+        //Email service
+        $messageBody = "Name: ".$booking->name." <br/> Check in Date: ".$booking->check_in."<br/> Check out Date: ".$booking->check_out."<br/> Housing type: "
+            .$booking->housing_type." <br/> Adults: ".$booking->adults."<br/> Children: ".$booking->children."<br/> Email: ".$booking->email."<br/>Phone: ".$booking->phone;
+
+        $data = array (
+            'bodyMessage' => $messageBody
+        );
+        Mail::send ( 'email', $data, function ($message) {
+            $message->from ( 'booking@laburnam.com', 'Just Laravel' );
+            $message->to ( 'info@laburnam.com' )->subject ( 'New Booking Notification' );
+        });
+
         flash('Your booking has been received. One of us will be in touch','success');
         return redirect('/make-a-booking');
     }
